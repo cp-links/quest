@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP QUEST</title>
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAApElEQVR4nGMUV9T+zzCAgIWBgYFBTEFjQCx/9eAGA9OA2IwEWJA5rx7coIulyCE+4CEw6oABdwALLold+48S1OzmaE2yWnQw4CEw6gCcaQAd4IpDXGqJSRcMDIMgBIanA4gNfpo5gBQw4A4gOheQAkjJMQMeAgPuAKKjAFvKJiWocYEBD4FRB+BMA6RWPuSCAQ+BUQegpIGB6CMOjhCgV58QGwAAeF0b+sB3Ob4AAAAASUVORK5CYII=">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background-color: #121920;
+            color: #d1e0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .terminal {
+            width: 100%;
+            max-width: 480px;
+            background: #17212b;
+            border: 2px solid #2d4153;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+        }
+        .header {
+            border-bottom: 2px dashed #2d4153;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #6a829a;
+        }
+        .banner-img {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: cover;
+            border: 1px solid #2d4153;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .screen {
+            min-height: 140px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            color: #d1e0f0;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            background: #0d131a;
+            color: #d1e0f0;
+            border: 1px solid #2d4153;
+            padding: 10px;
+            text-align: left;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        .btn:hover {
+            background: #2d4153;
+            color: #ffffff;
+            border-color: #6a829a;
+        }
+        .btn-link {
+            border-color: #6a829a;
+            color: #ffffff;
+            background: #202e3c;
+        }
+        .btn-link:hover {
+            background: #d1e0f0;
+            color: #0d131a;
+            border-color: #d1e0f0;
+        }
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="header">
+            <div>=== CP TICKET QUEST ===</div>
+            <div style="font-size: 11px; margin-top: 5px;">KONSER BİLETİ ARAYIŞI</div>
+        </div>
+
+        <img src="cp.png" alt="Punk Band" class="banner-img">
+
+        <div class="screen" id="text-screen">Sokak lambasının altında duruyorsun. Yağmur yağıyor. Cebinde son bir sigara var. Yeraltı mekanına giden kapı kapalı.<br><br>Ne yapacaksın?<span class="blink">_</span></div>
+
+        <div class="options" id="controls">
+            <button class="btn" onclick="step(1)">1. Kapıyı sertçe vur</button>
+            <button class="btn" onclick="step(2)">2. Arka sokağa dolaş</button>
+        </div>
+    </div>
+
+    <script>
+        const screen = document.getElementById('text-screen');
+        const controls = document.getElementById('controls');
+
+        function step(option) {
+            if (option === 1) {
+                screen.innerHTML = "Kapıdaki fedai seni süzdü. 'Parolan ne?' dedi. Deri ceketindeki yamayı gösterdin. İçeri alındın!\n\nSahne alev alev yanıyor. İlk konser burada!";
+                controls.innerHTML = `
+                    <a href="#" target="_blank" class="btn btn-link">[>] 1. KONSER BİLETİ (İSTANBUL)</a>
+                    <button class="btn" onclick="step(3)">> İlerlemeye devam et</button>
+                `;
+            } else if (option === 2) {
+                screen.innerHTML = "Arka sokakta gruba rastladın! Ekipmanları taşımana yardım ettin. Sana turne takvimini verdiler.";
+                controls.innerHTML = `
+                    <a href="https://www.bubilet.com.tr/ankara/etkinlik/cemiyette-pisiyorum-deli-gomlegi" target="_blank" class="btn btn-link">[>] 2. KONSER BİLETİ (ANKARA)</a>
+                    <button class="btn" onclick="step(3)">> Kulise geç</button>
+                `;
+            } else if (option === 3) {
+                screen.innerHTML = "Kuliste ana sahneye çıkan gizli bir geçit buldun. Gece sonu büyük final İzmir'de yapılıyor!";
+                controls.innerHTML = `
+                    <a href="#" target="_blank" class="btn btn-link">[>] 1. KONSER: İSTANBUL</a>
+                    <a href="https://www.bubilet.com.tr/ankara/etkinlik/cemiyette-pisiyorum-deli-gomlegi" target="_blank" class="btn btn-link">[>] 2. KONSER: ANKARA</a>
+                    <a href="https://www.bubilet.com.tr/izmir/etkinlik/cemiyette-pisiyorum-spray" target="_blank" class="btn btn-link">[>] 3. KONSER: İZMİR</a>
+                    <button class="btn" onclick="location.reload()">> Oyunu Baştan Oyna</button>
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>
